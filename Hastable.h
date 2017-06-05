@@ -1,6 +1,7 @@
 #ifndef _HT_H_
 #define _HT_H_
 
+#include <iostream>
 #include "node.h"
 
 template <class KEY, class DATA>
@@ -21,6 +22,16 @@ Table& operator=(Table& ht);//оператор копирования
 void Add(DATA val_,KEY k_);//добавление элемена
 void Del(KEY k_);//удаление элемента
 void resize(int newSize);//ресайз
+void input()
+{
+	KEY k;
+	DATA d;
+	std::cout << "input key:";
+	std::cin >> k;
+	std::cout << "input data:";
+	std::cin >> d;
+	Add(d, k);
+}
 };
 
 template <class KEY, class DATA>
@@ -131,7 +142,7 @@ void Table<KEY, DATA>::Del(KEY k_)//удаляем так же
 template<class KEY, class DATA>
 void Table<KEY, DATA>::resize(int newSize)//ресайз
 {
-	LinkedList<Node<KEY, DATA>>*tmp = mas;//делаем 2 указателя на один и тот же массив
+	LinkedList<Node<KEY, DATA>>* tmp = mas;//делаем 2 указателя на один и тот же массив
 	if (count > newSize)//проверяем что новый размер меньше количества элементов
 		throw 112;
 	mas = new LinkedList<Node<KEY, DATA>>[newSize];//меняем основной указатель класса на новый участок памяти
